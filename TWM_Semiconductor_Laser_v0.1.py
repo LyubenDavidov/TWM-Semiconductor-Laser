@@ -118,19 +118,20 @@ for counter in range(timesteps):
 
 
 # PLOT OF THE INTENSITY
+plt.figure()
 intensity = np.abs(E_n[0,:])**2;
-int0 = plt.plot(time, intensity, label="Left-most segment");
+int0 = plt.plot(time * 1e9, intensity * 1e3, label="Left-most segment");
 
 intensity = np.abs(E_n[int(N_seg/2)-1,:])**2;
-int1 = plt.plot(time, intensity, label="Middle segment");
+int1 = plt.plot(time * 1e9, intensity * 1e3, label="Middle segment");
 
 intensity = np.abs(E_n[N_seg-1,:])**2;
-int3 = plt.plot(time, intensity, label="Right-most segment");
+int3 = plt.plot(time * 1e9, intensity * 1e3, label="Right-most segment");
 
 
 
-plt.xlabel("time [s]")
-plt.ylabel("power [W]")
+plt.xlabel("time [ns]")
+plt.ylabel("power [mW]")
 plt.title("Power $|E_n|^{2}$");
 #plt.xlim(0.35e-8,0.45e-8)
 #plt.ylim(0,0.1e13)
@@ -140,9 +141,10 @@ plt.show();
 
 
 # PLOT OF THE CARRIER DENSITY
+plt.figure()
 carrier_density = N[0,:];
-plt.plot(time, carrier_density);
-plt.xlabel("time [s]");
+plt.plot(time * 1e9, carrier_density, color='purple');
+plt.xlabel("time [ns]");
 plt.ylabel("carrier density [$m^{-3}$]");
 plt.title("Carrier Density N");
 #plt.xlim(0.3e-8,0.35e-8);
@@ -152,9 +154,10 @@ plt.show();
 
 
 # PLOT OF THE REAL PART OF E-
+plt.figure()
 En0 = np.real(E_n[0,:]);
-plt.plot(time, En0);
-plt.xlabel("time [s]")
+plt.plot(time * 1e9, En0);
+plt.xlabel("time [ns]")
 plt.ylabel("Re $E_n$ [$\sqrt{W}$]")
 plt.title("Real Part of $E_n$");
 #plt.xlim(0.45e-7,0.95e-7)
@@ -164,8 +167,9 @@ plt.show();
 
 
 # PLOT OF THE IMAGINARY PART OF E-
+plt.figure()
 En1 = np.imag(E_n[0,:]);
-plt.plot(time, En1);
+plt.plot(time * 1e9, En1, color='orange');
 plt.xlabel("time [s]")
 plt.ylabel("Im $E_n$ [$\sqrt{W}$]")
 plt.title("Imag Part of $E_n$");
